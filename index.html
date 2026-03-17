@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Store</title><style>
+
+*{box-sizing:border-box;}
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#141e30,#243b55);
+color:white;
+text-align:center;
+}
+
+.container{
+width:90%;
+max-width:420px;
+margin:auto;
+margin-top:30px;
+padding:20px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 20px rgba(0,0,0,0.6);
+}
+
+.logo img{
+width:120px;
+border-radius:20px;
+}
+
+.title{
+font-size:26px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.banner img{
+width:100%;
+border-radius:12px;
+margin-top:15px;
+}
+
+.menu{margin-top:20px;}
+
+.btn{
+width:100%;
+padding:14px;
+margin-top:10px;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.qris{background:#00c853;}
+.dana{background:#1e88e5;}
+.gopay{background:#00bfa5;}
+.bukti{background:orange;}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+}
+
+.popup-box{
+background:white;
+color:black;
+padding:20px;
+border-radius:15px;
+width:85%;
+max-width:320px;
+}
+
+.popup img{
+width:220px;
+}
+
+.close{
+background:red;
+color:white;
+margin-top:10px;
+}
+
+.copy{
+background:#333;
+color:white;
+margin-top:10px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+</style></head><body><div class="container"><div class="logo">
+<img src="logo.jpg">
+</div><div class="title">KEVIN STORE</div><div class="banner">
+<img src="banner.jpg">
+</div><div class="menu"><div class="btn qris" onclick="openQR()"> BAYAR QRIS</div>
+<div class="btn dana" onclick="openDana()"> BAYAR DANA</div>
+<div class="btn gopay" onclick="openGopay()"> BAYAR GOPAY</div>
+<div class="btn bukti" onclick="openBukti()"> KIRIM BUKTI PEMBAYARAN</div></div></div><!-- QRIS --><div id="qr" class="popup">
+<div class="popup-box"><h3>SCAN QRIS</h3><img id="gambarQris" src="qris.png"><div class="btn copy" onclick="downloadQR()"> DOWNLOAD QR</div>
+<div class="btn close" onclick="closeAll()">TUTUP</div></div>
+</div><!-- DANA --><div id="dana" class="popup">
+<div class="popup-box"><h3>DANA</h3><p><b>085809475572</b></p><div class="btn copy" onclick="copyDana()">COPY NOMOR</div>
+<div class="btn close" onclick="closeAll()">TUTUP</div></div>
+</div><!-- GOPAY --><div id="gopay" class="popup">
+<div class="popup-box"><h3>GOPAY</h3><p><b>083125517418</b></p><div class="btn copy" onclick="copyGopay()">COPY NOMOR</div>
+<div class="btn close" onclick="closeAll()">TUTUP</div></div>
+</div><!-- BUKTI PEMBAYARAN --><div id="bukti" class="popup">
+<div class="popup-box"><h3>KIRIM BUKTI PEMBAYARAN</h3><input type="text" id="namaPembeli" placeholder="Nama Anda"><input type="file"><div class="btn bukti" onclick="kirimWA()"> KIRIM KE WHATSAPP</div><div class="btn close" onclick="closeAll()">TUTUP</div></div>
+</div><script>
+
+function openQR(){
+document.getElementById("qr").style.display="flex"
+}
+
+function openDana(){
+document.getElementById("dana").style.display="flex"
+}
+
+function openGopay(){
+document.getElementById("gopay").style.display="flex"
+}
+
+function openBukti(){
+document.getElementById("bukti").style.display="flex"
+}
+
+function closeAll(){
+document.getElementById("qr").style.display="none"
+document.getElementById("dana").style.display="none"
+document.getElementById("gopay").style.display="none"
+document.getElementById("bukti").style.display="none"
+}
+
+function copyDana(){
+navigator.clipboard.writeText("085809475572")
+alert("Nomor DANA disalin")
+}
+
+function copyGopay(){
+navigator.clipboard.writeText("083125517418")
+alert("Nomor GOPAY disalin")
+}
+
+function downloadQR(){
+let link=document.createElement("a");
+link.href=document.getElementById("gambarQris").src;
+link.download="QRIS-Kevin-Store.png";
+link.click();
+}
+
+function kirimWA(){
+
+let nama=document.getElementById("namaPembeli").value;
+
+let nomorAdmin="6285758118242";
+
+let pesan="Halo Kevin Store, saya sudah melakukan pembayaran.%0A%0ANama: "+nama+"%0A%0ASaya akan mengirim bukti pembayaran.";
+
+window.open("https://wa.me/"+nomorAdmin+"?text="+pesan);
+
+}
+
+</script></body>
+  </html>
